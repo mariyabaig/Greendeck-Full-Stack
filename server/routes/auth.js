@@ -2,9 +2,10 @@ const express = require('express')
 const router = express.Router();
 const User = require("../models/User")
 const { body, validationResult } = require('express-validator');
-
+const bcrypt = require("bcryptjs")
 
 //POST request to create a user POST /api/auth/createuser
+
 
 //if there are errors, return bad request and the errors
 router.post('/createuser',[
@@ -22,10 +23,16 @@ try {
 if(user){
     res.status(400).json({errors:"Email already exists", message: errors.message})
 }
+//password hashing
+
+const salt = await bcrypt.genSalt(10)
+const SecPassword = await bcrypt.hash(req.body.password,salt)
+
+//Create a new user
      user = await User.create({
       name: req.body.name,
       email : req.body.email,
-      password: req.body.password,
+      password: SecPassword,
     })
     
     // .then(user => res.json(user)).catch(err=>{console.log(err) 
