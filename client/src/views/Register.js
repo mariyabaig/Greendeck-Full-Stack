@@ -9,7 +9,7 @@ navigate("/login")
 const register=()=>{
 const{name, email,password, cpassword} = user
 if(name && email && password && (password===cpassword)){
-  axios.post("http://localhost:9000/register",user).then(res=>console.log(res))
+  axios.post("http://localhost:9002/register",user).then(res=>console.log(res))
 
 }else{
   alert("invalid")
@@ -18,13 +18,14 @@ if(name && email && password && (password===cpassword)){
   }
 
   const [user, setUser] = useState({
-    name:" ",
-    email:" ",
-    password:" ",
-    cpassword:" ",
+    name:"",
+    email:"",
+    password:"",
+    cpassword:"",
   });
 
   const handleChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setUser({
       ...user,

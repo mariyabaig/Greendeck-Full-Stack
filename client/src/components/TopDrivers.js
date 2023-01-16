@@ -48,12 +48,12 @@ const TopDrivers = () => {
                         {insight.stats.topDrivers[0].map(child=>child.change)}
                         </td>
                         <td className="text-md font-light px-6 py-4 whitespace-nowrap">
-                        <span className="border-2 rounded-full px-2 py-1 (insight.stats.topDrivers[0].map(child=>child.absoluteChange) >0 ?( bg-green-200 border-green-400 text-green-900) : bg-red-200 border-red-400 )"> {insight.stats.topDrivers[0].map(child=>child.absoluteChange)}</span>
+                        <span className="border-2 rounded-full px-2 py-1 "> {insight.stats.topDrivers[0].map(child=>child.absoluteChange)}</span>
                        
                        
                         </td>
                         <td className="text-md  font-light px-6 py-4 whitespace-nowrap">
-                        <span className="border-2 rounded-full px-2 py-1 (insight.stats.topDrivers[0].map(child=>child.effectiveChange)>0 ? bg-green-200 border-green-400 text-green-900 : bg-red-200 border-red-400 text-red-400)">
+                        <span className="border-2 rounded-full px-2 py-1 ">
                         {insight.stats.topDrivers[0].map(child=>child.effectiveChange)}
                         </span>
                         </td>
@@ -66,11 +66,11 @@ const TopDrivers = () => {
                         {insight.stats.topDrivers[1].map(child=>child.change)}
                         </td>
                         <td className="text-md font-light px-6 py-4 whitespace-nowrap">
-                        <span className="border-2 rounded-full px-2 py-1 (insight.stats.topDrivers[1].map(child=>child.absoluteChange)>0 ? bg-green-200 border-green-400 text-green-900 : bg-red-200 border-red-400 )"> {insight.stats.topDrivers[1].map(child=>child.absoluteChange)}</span>
+                        <span className="border-2 rounded-full px-2 py-1 "> {insight.stats.topDrivers[1].map(child=>child.absoluteChange)}</span>
                        
                         </td>
                         <td className="text-md text-slate-700 font-light px-6 py-4 whitespace-nowrap">
-                        <span className="border-2 rounded-full px-2 py-1 (insight.stats.topDrivers[0].map(child=>child.effectiveChange)>0 ? bg-green-200 border-green-400 text-green-900 : bg-red-200 border-red-400 text-red-400)">
+                        <span className="border-2 rounded-full px-2 py-1">
                         {insight.stats.topDrivers[1].map(child=>child.effectiveChange)}
                         </span>
                         </td>

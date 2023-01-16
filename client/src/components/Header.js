@@ -35,7 +35,7 @@ const Header = () => {
                   </ol>
                 </nav>
              
-<span className="flex flex-row justify-center items-center float-right border-2 rounded-full px-3 py-2 mx-3 {insight.score === Low ? bg-green-200 border-green-400 text-green-400 : (insight.score === Medium ? bg-yellow-100 border-yellow-400 text-yellow-400 : bg-red-200 border-red-400 text-red-400) }">
+<span className="flex flex-row justify-center items-center float-right border-2 rounded-full px-3 py-2 mx-3 bg-green-100 text-green-500 border-green-500 }">
   <FiZap/>{insight.score <50 ? "Low" :  insight.score<71 ? "Medium" : "High"} 
 </span>
               </div>

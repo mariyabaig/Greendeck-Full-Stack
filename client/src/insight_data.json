@@ -56,7 +56,7 @@
             "absoluteChange": "133.33",
             "incident": "e91affdda953485ca70c8bd30449c0b1"
         },
-        "header": "Google Analytics / GTM GA / ga:visitors",
+        "header": "Google Analytics/GTM GA/ga:visitors",
         "content": "ga:visitors increased by 133.33% from 6.00 to 14.00 between 19:00 December 28, 2022 and 20:00 December 28, 2022.         ",
         "viewers": [
             {
@@ -79,7 +79,7 @@
             "tags": [],
             "name": "Google Analytics",
             "status": "active",
-            "slug": "google-analytics", 
+            "slug": "google-analytics",
             "category": "Analytics",
             "queryEditor": false,
             "description": "Improve sales and conversions by connecting your Google Analytics data",
