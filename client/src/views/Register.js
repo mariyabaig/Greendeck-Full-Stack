@@ -1,37 +1,60 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+
 const Register = () => {
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
+
   const goToLogin=()=>{
-navigate("/login")
-  }
-const register=()=>{
-const{name, email,password, cpassword} = user
-if(name && email && password && (password===cpassword)){
-  axios.post("http://localhost:9002/register",user).then(res=>console.log(res))
-
-}else{
-  alert("invalid")
-}
-
+  navigate("/login")
   }
 
-  const [user, setUser] = useState({
+// const register=()=>{
+// const{name, email,password, cpassword} = user
+// if(name && email && password && (password===cpassword)){
+//   axios.post("http://localhost:9002/register",user).then(res=>console.log(res))
+
+// }else{
+//   alert("invalid")
+// }
+
+//   }
+
+  const [credentials, setCredentials] = useState({
     name:"",
     email:"",
     password:"",
     cpassword:"",
   });
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
+  const onChange = (e) => {
+    setCredentials({...credentials, [e.target.name]: e.target.value})
   };
+
+  const register = async (e) => {
+    e.preventDefault();
+    const {name,email,password,cpassword} = credentials;
+
+    const response = await fetch("http://localhost:5000/api/auth/createuser", {
+      
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name, email,password})
+    });
+    const json = await response.json()
+    console.log(json);
+    if (json.success){
+        // Save the auth token and redirect
+        localStorage.setItem('token', json.authToken); 
+        navigate("/");
+  
+    }
+  }
+  
   return (
     <>
       <div className="bg-gray-800">
@@ -49,7 +72,6 @@ if(name && email && password && (password===cpassword)){
                     className="w-6 h-6 mr-3"
                   >
                     <path
-                      fill-rule="evenodd"
                       d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
                     ></path>
                   </svg> 
@@ -87,7 +109,7 @@ if(name && email && password && (password===cpassword)){
             <p className="text-center text-sm text-gray-500 font-light">
               Or sign up with credentials
             </p>
-            <form className="mt-6">
+            <form onSubmit={register} className="mt-6">
               <div className="relative">
                 <input
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
@@ -95,8 +117,8 @@ if(name && email && password && (password===cpassword)){
                   type="text"
                   placeholder="Name"
                   name="name"
-                  value={user.name}
-                  onChange={handleChange}
+                  value={credentials.name}
+                  onChange={onChange}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   <svg
@@ -117,8 +139,8 @@ if(name && email && password && (password===cpassword)){
                   type="email"
                   placeholder="Email"
                   name="email"
-                  value={user.email}
-                  onChange={handleChange}
+                  value={credentials.email}
+                  onChange={onChange}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                    <svg
@@ -139,8 +161,8 @@ if(name && email && password && (password===cpassword)){
                   type="password"
                   placeholder="Password"
                   name="password"
-                  value={user.password}
-                  onChange={handleChange}
+                  value={credentials.password}
+                  onChange={onChange}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                    <svg
@@ -161,8 +183,8 @@ if(name && email && password && (password===cpassword)){
                   type="password"
                   placeholder="Confirm Password"
                   name="cpassword"
-                  value={user.cpassword}
-                  onChange={handleChange}
+                  value={credentials.cpassword}
+                  onChange={onChange}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                    <svg
@@ -178,7 +200,7 @@ if(name && email && password && (password===cpassword)){
 
               <div className="flex items-center justify-center mt-8">
                 <button
-                  onClick={register}
+          
                   className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                 >
                   Create Account
