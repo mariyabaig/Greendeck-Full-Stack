@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./views/Home";
 
 function App() {
-  const [user, setLoginUser] = useState({});
   return (
     <>
       <BrowserRouter>
@@ -15,11 +14,11 @@ function App() {
             exact
             path="/"
             element={ 
-              user && user._id ? <Home setLoginUser={setLoginUser} /> : <Login setLoginUser={setLoginUser}/>
+             <Home/>
             }
             
           /> 
-          <Route exact path="/login" element={<Login setLoginUser={setLoginUser}/>} />
+          <Route exact path="/login" element={<Login/>} />
           <Route exact path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>  

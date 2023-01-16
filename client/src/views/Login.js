@@ -10,34 +10,85 @@ const goToRegister=()=>{
 navigate("/register")
   }
 
-  const [user, setUser] = useState({
+  // const [user, setUser] = useState({
    
-    email:"",
-    password:"",
+  //   email:"",
+  //   password:"",
    
-  });
+  // });
+  const [credentials, setCredentials] = useState({email: "", password: ""}) 
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
 
-  const login = () => {
-    axios.post("http://localhost:9002/login", user)
-    .then(res => {
-        alert(res.data.message)
-        setLoginUser(res.data.user)
-        navigate("/")
-    })
+  const onChange = (e)=>{
+    setCredentials({...credentials, [e.target.name]: e.target.value})
 }
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const response = await fetch("http://localhost:5000/api/auth/login", {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email: credentials.email, password: credentials.password})
+  });
+  const json = await response.json()
+  console.log(json);
+  if (json.success){
+      // Save the auth token and redirect
+      localStorage.setItem('token', json.authtoken); 
+      navigate("/");
+
+  }
+  else{
+      alert("Invalid credentials");
+  }
+}
+
+// const login = async(e) => {
+//   e.preventDefault();
+//   const response = await fetch("http://localhost:5000/api/auth/login", {
+//       method: 'POST',
+//       headers: {
+//           'Content-Type': 'application/json',
+//           "Access-Control-Allow-Origin": "*",
+//       },
+//       body: JSON.stringify({email: credentials.email, password: credentials.password})
+//   });
+//   const json = await response.json()
+//   console.log(json);
+//   if (json.success){
+//       // Save the auth token and redirect
+//       localStorage.setItem('token', json.authtoken); 
+//       navigate("/");
+
+//   }
+//   else{
+//       alert("Invalid credentials");
+//   }
+// }
+
+//   const handleChange = (e) => {
+//     e.preventDefault();
+//     const { name, value } = e.target;
+//     setUser({
+//       ...user,
+//       [name]: value,
+//     });
+//   };
+
+// //   const login = () => {
+//     axios.post("http://localhost:9002/login", user)
+//     .then(res => {
+//         alert(res.data.message)
+//         setLoginUser(res.data.user)
+//         navigate("/")
+//     })
+// }
   return (
     <>
       <div >
-      {console.log(user)}
+      {/* {console.log(user)} */}
         <div className="p-8 lg:w-1/2 mx-auto">
           <div className="bg-white rounded-t-lg p-8">
             <p className="text-center text-sm text-gray-400 font-light">
@@ -90,16 +141,17 @@ navigate("/register")
             <p className="text-center text-sm text-gray-500 font-light">
               Or sign in with credentials
             </p>
-            <form className="mt-6">
+            <form className="mt-6" onSubmit={handleSubmit}>
               <div className="relative">
+
                 <input
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                   id="email"
                   type="email"
                   placeholder="Email"
                   name="email"
-                  value={user.email}
-                  onChange={handleChange}
+                  value={credentials.email}
+                  onChange={onChange}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   <svg
@@ -120,8 +172,8 @@ navigate("/register")
                   type="password"
                   placeholder="Password"
                   name="password"
-                  value={user.password}
-                  onChange={handleChange}
+                  value={credentials.password}
+                  onChange={onChange}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   <svg
@@ -144,7 +196,7 @@ navigate("/register")
                 <label htmlFor="remember">Remember me</label>
               </div>
               <div className="flex items-center justify-center mt-8">
-                <button onClick={login} className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                <button className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                   Sign in
                 </button>
               </div>
