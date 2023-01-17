@@ -2,24 +2,29 @@ import "./App.css";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes , Redirect } from "react-router-dom";
 import Home from "./views/Home";
+import RouteNotFound from "./views/RouteNotFound";
+import RouteError from "./views/RouteError";
 
 function App() {
+  const [user, setLoginUser] = useState({})
   return (
     <>
       <BrowserRouter>
         <Routes> 
+        <Route path="*" element={<RouteNotFound/>} />
           <Route
             exact
-            path="/"
-            element={ 
-             <Home/>
-            }
+            path="/organizations/quantive"
+            element= {user && user._id ? <Home/> : <Login setLoginUser={setLoginUser} 
+            errorElement={<RouteError />}
+            />}
             
-          /> 
-          <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/register" element={<Register />} />
+         />
+           <Route exact path="/" Redirect to = "/auth/login" element={<Login/>} ></Route> 
+          <Route exact path="/auth/login" element={<Login setLoginUser={setLoginUser}/>} />
+          <Route exact path="/auth/signup" element={<Register />} />
         </Routes>
       </BrowserRouter>  
       
