@@ -9,8 +9,9 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-
+import charts from "../chart.json";
 const Charts = () => {
+
   const pdata = [
     {
       timestamp: "2022-12-28T09:00:00Z",
@@ -279,16 +280,19 @@ const Charts = () => {
   ];
   return (
     <>
-      <div className="container w-72">
+      <div className="container">
       <ResponsiveContainer aspect={3}>
-        <LineChart data={pdata} margin={{ right: 300 }}>
+        <LineChart data={pdata} >
           <CartesianGrid />
-          <XAxis dataKey="timestamp" />
-          <YAxis></YAxis>
+          <XAxis  tick={false} hide dataKey="timestamp" />
+          <YAxis tick={false} hide dataKey="value"></YAxis>
           <Legend />
           <Tooltip />
-          <Line dataKey="value" stroke="blue" activeDot={{ r: 8 }} />
-          
+          <Line dataKey="upperBound"  stroke="gray" dot={false}  />
+          <Line dataKey="lowerBound"  stroke="gray"  dot={false} />
+          <Line dataKey="value"  stroke="#0F52BA" dot={{ stroke: "#0F52BA", strokeWidth: 1, r: 4, strokeDasharray:''}}  />
+          <Line type="monotone"  strokeDasharray="3 3" dataKey="forecastedValue" stroke="blue" />
+          <Line  type="monotone" dataKey="lineStatus" stroke="red" />
         </LineChart>
       </ResponsiveContainer>
       </div>
