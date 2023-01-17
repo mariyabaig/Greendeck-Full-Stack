@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import one from '../company_logo_name.svg';
 
 const Register = () => {
 
   const navigate = useNavigate();
 
   const goToLogin=()=>{
-  navigate("/login")
+  navigate("/auth/login")
   }
 
 // const register=()=>{
@@ -50,16 +50,28 @@ const Register = () => {
     if (json.success){
         // Save the auth token and redirect
         localStorage.setItem('token', json.authToken); 
-        navigate("/");
+        navigate("/organizations/quantive");
   
+    }
+    else{
+      alert("invalid")
     }
   }
   
   return (
     <>
-      <div className="bg-gray-800">
+    <div className="flex justify-center items-center"
+        style={{
+          padding: '5px',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <img className = "my-3" src={one} style={{width:'200px'}}/>
+      </div>
+      <div className="bg-gray-100 rounded-b-lg">
         <div className="p-8 lg:w-1/2 mx-auto">
-          <div className="bg-white rounded-t-lg p-8">
+          {/* <div className="bg-white rounded-t-lg p-8">
             <p className="text-center text-sm text-gray-400 font-light">
               Sign up with
             </p>
@@ -104,10 +116,10 @@ const Register = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="bg-gray-100 rounded-b-lg py-12 px-4 lg:px-24">
-            <p className="text-center text-sm text-gray-500 font-light">
-              Or sign up with credentials
+            <p className="text-center text-xl text-gray-500 font-light">
+             Sign up with credentials
             </p>
             <form onSubmit={register} className="mt-6">
               <div className="relative">
@@ -199,15 +211,15 @@ const Register = () => {
               </div>
 
               <div className="flex items-center justify-center mt-8">
-                <button
+                <button type="submit"
           
                   className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                 >
                   Create Account
                 </button>
               </div>
-              Already have an account?
-              <div className="flex items-center justify-center mt-8">
+              <span className="text-xl flex justify-center mt-2 text-gray-500">Already have an account?</span>
+              <div className="flex items-center justify-center mt-2">
                 <button
                   onClick={goToLogin}
                   className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"

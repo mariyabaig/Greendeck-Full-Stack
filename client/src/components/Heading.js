@@ -1,6 +1,5 @@
 import React from "react";
 import insight from "../insight_data.json";
-
 const Heading = () => {
   return (
     <>
