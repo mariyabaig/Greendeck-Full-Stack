@@ -9,9 +9,8 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import charts from "../chart.json";
-const Charts = () => {
 
+const Charts = () => {
   const pdata = [
     {
       timestamp: "2022-12-28T09:00:00Z",
@@ -281,20 +280,32 @@ const Charts = () => {
   return (
     <>
       <div className="container">
-      <ResponsiveContainer aspect={3}>
-        <LineChart data={pdata} >
-          <CartesianGrid />
-          <XAxis  tick={false} hide dataKey="timestamp" />
-          <YAxis tick={false} hide dataKey="value"></YAxis>
-          <Legend />
-          <Tooltip />
-          <Line dataKey="upperBound"  stroke="gray" dot={false}  />
-          <Line dataKey="lowerBound"  stroke="gray"  dot={false} />
-          <Line dataKey="value"  stroke="#0F52BA" dot={{ stroke: "#0F52BA", strokeWidth: 1, r: 4, strokeDasharray:''}}  />
-          <Line type="monotone"  strokeDasharray="3 3" dataKey="forecastedValue" stroke="blue" />
-          <Line  type="monotone" dataKey="lineStatus" stroke="red" />
-        </LineChart>
-      </ResponsiveContainer>
+        <ResponsiveContainer aspect={3}>
+          <LineChart data={pdata}>
+            <CartesianGrid />
+            <XAxis tick={false} hide dataKey="timestamp" />
+            <YAxis tick={false} hide dataKey="value"></YAxis>
+
+            <Line dataKey="upperBound" stroke="gray" dot={false} />
+            <Line
+              dataKey="value"
+              stroke="#0F52BA"
+              dot={{
+                stroke: "#0F52BA",
+                strokeWidth: 1,
+                r: 4,
+                strokeDasharray: "",
+              }}
+            />
+            <Line
+              type="monotone"
+              strokeDasharray="3 3"
+              dataKey="forecastedValue"
+              stroke="blue"
+            />
+            <Line dataKey="lowerBound" stroke="gray" dot={false} gradient />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </>
   );

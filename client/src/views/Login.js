@@ -1,7 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import one from "../company_logo_name.svg";
+import one from "../data/company_logo_name.svg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,12 +9,8 @@ const Login = () => {
     navigate("/auth/signup");
   };
 
-  // const [user, setUser] = useState({
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
-  //   email:"",
-  //   password:"",
-
-  // });
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const onChange = (e) => {
@@ -39,6 +34,7 @@ const Login = () => {
     if (json.success) {
       // Save the auth token and redirect
       localStorage.setItem("token", json.authtoken);
+      setIsLoggedin(true);
       navigate("/organizations/quantive");
       alert.show("Successfully logged in.")
     } else {
@@ -46,10 +42,16 @@ const Login = () => {
     }
   };
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedin(false);
+    navigate("/auth/login")
+  };
+
 
   return (
     <>
-      <div>
+      
         <div
           className="flex justify-center items-center"
           style={{
@@ -60,9 +62,10 @@ const Login = () => {
         >
           <img className="my-3" src={one} style={{ width: "200px" }} />
         </div>
-
+        {!isLoggedin ? (<>
         <div className="p-8 lg:w-1/2 mx-auto">
           <div>
+         
             <div className="bg-gray-100 rounded-b-lg py-12 px-4 lg:px-24">
               <p className="text-center text-xl text-gray-500 font-light">
                 Sign in with credentials
@@ -128,15 +131,19 @@ const Login = () => {
                     className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
                   >
                     Sign up
-                  </button>
+                  </button> 
                 </div>
               </form>
             </div>
           </div>
         </div>
         <div />
-        <div />
-      </div>
+        <div /> 
+        </>
+        ) : (
+         <h1><button onClickCapture={logout}>Logout</button></h1> 
+        )
+        }
     </>
   );
 };

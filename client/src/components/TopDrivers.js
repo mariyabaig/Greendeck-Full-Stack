@@ -1,10 +1,10 @@
 import React from "react";
-import insight from "../insight_data.json";
+import insight from "../data/insight_data.json";
 
 const TopDrivers = () => {
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col justify-between ">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div className="overflow-hidden my-3">
@@ -42,37 +42,60 @@ const TopDrivers = () => {
                     <tbody key={insight.id}>
                       <tr>
                         <td className="whitespace-nowrap text-md font-medium">
-                          <span className="rounded-full border text-gray-700 flex justify-center font-medium border-gray-900 py-2 px-2 bg-gray-50">{insight.stats.topDrivers[0].map(child=>child[0])}</span>
+                          <span className="rounded-full border text-slate-500 flex justify-center font-medium border-gray-900 py-2 px-2 bg-gray-50">
+                            {insight.stats.topDrivers[0].map(
+                              (child) => child[0]
+                            )}
+                          </span>
                         </td>
-                        <td className="text-md text-slate-700 font-light px-6 py-4 whitespace-nowrap " >
-                        {insight.stats.topDrivers[0].map(child=>child.change)}
+                        <td className="text-md text-slate-700 font-light px-6 py-4 whitespace-nowrap ">
+                          {insight.stats.topDrivers[0].map(
+                            (child) => child.change
+                          )}
                         </td>
                         <td className="text-md font-light px-6 py-4 whitespace-nowrap">
-                        <span className="border-2 rounded-full px-2 py-1 "> {insight.stats.topDrivers[0].map(child=>child.absoluteChange)}</span>
-                       
-                       
+                          <span className="border-2 rounded-full px-2 py-1  bg-green-100 text-green-500 border-green-500">
+                            {" "}
+                            {insight.stats.topDrivers[0].map(
+                              (child) => child.absoluteChange
+                            )}
+                          </span>
                         </td>
-                        <td className="text-md  font-light px-6 py-4 whitespace-nowrap">
-                        <span className="border-2 rounded-full px-2 py-1 ">
-                        {insight.stats.topDrivers[0].map(child=>child.effectiveChange)}
-                        </span>
+                        <td className="text-md  font-light px-6 py-4 whitespace-nowrap ">
+                          <span className="border-2 rounded-full px-2 py-1  bg-green-100 text-green-500 border-green-500 ">
+                            {insight.stats.topDrivers[0].map(
+                              (child) => child.effectiveChange
+                            )}
+                          </span>
                         </td>
                       </tr>
                       <tr>
                         <td className=" whitespace-nowrap text-md font-medium">
-                        <span className="rounded-full border text-gray-700 flex justify-center font-medium border-gray-900 py-2 px-2 bg-gray-50">{insight.stats.topDrivers[1].map(child=>child[0])}</span>
+                          <span className="rounded-full border text-slate-500 flex justify-center font-medium border-gray-900 py-2 px-2 bg-gray-50">
+                            {insight.stats.topDrivers[1].map(
+                              (child) => child[0]
+                            )}
+                          </span>
                         </td>
-                        <td className="text-md text-slate-700 font-light px-6 py-4 whitespace-nowrap " >
-                        {insight.stats.topDrivers[1].map(child=>child.change)}
+                        <td className="text-md text-slate-700 font-light px-6 py-4 whitespace-nowrap ">
+                          {insight.stats.topDrivers[1].map(
+                            (child) => child.change
+                          )}
                         </td>
                         <td className="text-md font-light px-6 py-4 whitespace-nowrap">
-                        <span className="border-2 rounded-full px-2 py-1 "> {insight.stats.topDrivers[1].map(child=>child.absoluteChange)}</span>
-                       
+                          <span className="border-2 rounded-full px-2 py-1  bg-green-100 text-green-500 border-green-500">
+                            {" "}
+                            {insight.stats.topDrivers[1].map(
+                              (child) => child.absoluteChange
+                            )}
+                          </span>
                         </td>
                         <td className="text-md text-slate-700 font-light px-6 py-4 whitespace-nowrap">
-                        <span className="border-2 rounded-full px-2 py-1">
-                        {insight.stats.topDrivers[1].map(child=>child.effectiveChange)}
-                        </span>
+                          <span className="border-2 rounded-full px-2 py-1  bg-green-100 text-green-500 border-green-500 ">
+                            {insight.stats.topDrivers[1].map(
+                              (child) => child.effectiveChange
+                            )}
+                          </span>
                         </td>
                       </tr>
                     </tbody>

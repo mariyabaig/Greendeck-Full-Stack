@@ -7,26 +7,28 @@ import Home from "./views/Home";
 import RouteNotFound from "./views/RouteNotFound";
 import RouteError from "./views/RouteError";
 
+
 function App() {
-  const [user, setLoginUser] = useState({})
+  
   return (
     <>
-      <BrowserRouter>
+     <BrowserRouter>
         <Routes> 
         <Route path="*" element={<RouteNotFound/>} />
           <Route
             exact
             path="/organizations/quantive"
-            element= {user && user._id ? <Home/> : <Login setLoginUser={setLoginUser} 
+            element={<Home/>}
             errorElement={<RouteError />}
-            />}
+            />
             
-         />
+         
            <Route exact path="/" Redirect to = "/auth/login" element={<Login/>} ></Route> 
-          <Route exact path="/auth/login" element={<Login setLoginUser={setLoginUser}/>} />
+          <Route exact path="/auth/login" element={<Login/>} />
           <Route exact path="/auth/signup" element={<Register />} />
         </Routes>
       </BrowserRouter>  
+      
       
     </>
   );

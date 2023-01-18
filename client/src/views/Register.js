@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import one from '../company_logo_name.svg';
+import one from '../data/company_logo_name.svg';
 import { useAlert } from 'react-alert'
 
 const Register = () => {
@@ -11,7 +11,7 @@ const Register = () => {
   navigate("/auth/login")
   }
 
-
+const[isLoggedin,setIsLoggedin] =[false]
 // const register=()=>{
 // const{name, email,password, cpassword} = user
 // if(name && email && password && (password===cpassword)){
@@ -56,11 +56,11 @@ const Register = () => {
         alert.show("Successfully created your account, You're now on home")
   
     }
-    if (json.error ==="Sorry a user with this email already exists") {
+    { if (json.error ==="Sorry a user with this email already exists") {
       alert.show("User with this email already exists")
     }  else{
       alert.show("Something bad happened. Couldn't Register")
-   
+    }
       
     }
   }else{

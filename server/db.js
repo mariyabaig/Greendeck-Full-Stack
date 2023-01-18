@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
+require('dotenv').config()
 
-const DB = "mongodb+srv://mariyabaig:ketumie@cluster0.70i1s3u.mongodb.net/users?retryWrites=true&w=majority";
-
+const DB = process.env.DB
 mongoose.connect(DB,{
     useNewUrlParser:true,
     useUnifiedTopology:true

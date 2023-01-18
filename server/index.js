@@ -1,10 +1,10 @@
 const connectToMongo = require("./db")
 const express = require('express')
 const cors = require('cors')
-
+require('dotenv').config()
 
 const app = express()
-const port = 5000
+console.log(process.env)
 //middleware
 app.use(express.json())
 app.use(cors())
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth',require('./routes/auth'))
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(process.env.port, () => {
+  console.log(`Example app listening on port ${process.env.port}`)
 })
 
