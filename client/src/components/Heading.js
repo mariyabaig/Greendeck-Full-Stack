@@ -1,6 +1,27 @@
+import { useEffect, useState } from "react";
 import React from "react";
-import insight from "../data/insight_data.json";
+//import insight from "../data/insight_data.json";
+
+
 const Heading = () => {
+
+
+  const [insight, setInsight] = useState([])
+
+  const fetchData = () => {
+    fetch("http://localhost:5000/insightdata")
+      .then(response => {
+        return response.json()
+      })
+      .then( data => {
+        setInsight(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <>
       {insight.map((insight) => {
