@@ -1,22 +1,22 @@
 import React , {useEffect,useState}from "react";
-// import insight from "../data/insight_data.json";
+import insight from "../data/insight_data.json";
 
 const TopDrivers = () => {
-  const [insight, setInsight] = useState([])
+  // const [insight, setInsight] = useState([])
 
-  const fetchData = () => {
-    fetch("http://localhost:5000/insightdata")
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setInsight(data)
-      })
-  }
+  // const fetchData = () => {
+  //   fetch("http://localhost:5000/insightdata")
+  //     .then(response => {
+  //       return response.json()
+  //     })
+  //     .then(data => {
+  //       setInsight(data)
+  //     })
+  // }
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
 
 
   return (
