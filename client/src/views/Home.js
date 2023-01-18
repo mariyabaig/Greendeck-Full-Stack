@@ -16,7 +16,7 @@ const Home = () => {
         <img className="my-3" src={one} style={{ width: "200px" }} />
       </div>
       <Header />
-      <div className="flex flex-row h-screen">
+      <div className="flex flex-row">
         <div className="mx-5 w-3/5">
           <Heading />
           <div className="my-4 float-left text-md">
