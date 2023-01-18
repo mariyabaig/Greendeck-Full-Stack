@@ -20,9 +20,11 @@ const navigate = useNavigate();
   return (
     <>
       <div className="flex justify-center items-center px-5">
-        <img className="my-3" src={one} style={{ width: "200px" }} />
+        <img className="my-3 mx-3" src={one} style={{ width: "200px" }} />
+        <button className="btn btn-primary float-right" onClick={logout}>Logout</button>
       </div>
-      <Header /> <button className="btn btn-primary" onClick={logout}>Logout</button>
+    
+      <Header /> 
       <div className="flex flex-row">
         <div className="mx-5 w-3/5">
           <Heading />
