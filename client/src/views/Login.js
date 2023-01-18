@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import one from "../data/company_logo_name.svg";
+import { useAlert } from 'react-alert'
 
 const Login = () => {
   const navigate = useNavigate();
 
+  const alert = useAlert();
+  
   const goToRegister = () => {
     navigate("/auth/signup");
   };

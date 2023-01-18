@@ -8,6 +8,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
+  Area,
 } from "recharts";
 
 const Charts = () => {
@@ -280,9 +281,9 @@ const Charts = () => {
   return (
     <>
       <div className="container">
-        <ResponsiveContainer aspect={3}>
-          <LineChart data={pdata}>
-            <CartesianGrid />
+        <ResponsiveContainer aspect={2.5}>
+          <LineChart data={pdata} margin={{top:50,bottom:50,right:50,left:50}}>
+           <CartesianGrid/>
             <XAxis tick={false} hide dataKey="timestamp" />
             <YAxis tick={false} hide dataKey="value"></YAxis>
 
@@ -297,13 +298,14 @@ const Charts = () => {
                 strokeDasharray: "",
               }}
             />
-            <Line
+            {/* <Line
               type="monotone"
               strokeDasharray="3 3"
               dataKey="forecastedValue"
               stroke="blue"
-            />
-            <Line dataKey="lowerBound" stroke="gray" dot={false} gradient />
+            /> */}
+            
+            <Line dataKey="lowerBound" stroke="gray"  dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>

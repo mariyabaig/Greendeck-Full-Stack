@@ -9,7 +9,8 @@ import RouteError from "./views/RouteError";
 
 
 function App() {
-  
+const [isLoggedin, setIsLoggedin] = useState(false);
+
   return (
     <>
      <BrowserRouter>
@@ -18,6 +19,7 @@ function App() {
           <Route
             exact
             path="/organizations/quantive"
+            
             element={<Home/>}
             errorElement={<RouteError />}
             />
@@ -27,9 +29,7 @@ function App() {
           <Route exact path="/auth/login" element={<Login/>} />
           <Route exact path="/auth/signup" element={<Register />} />
         </Routes>
-      </BrowserRouter>  
-      
-      
+      </BrowserRouter>   
     </>
   );
 }
