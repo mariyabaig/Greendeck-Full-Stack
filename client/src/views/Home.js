@@ -5,17 +5,24 @@ import TopDrivers from "../components/TopDrivers";
 import Charts from "../components/Chart";
 import Change from "../components/Change";
 import one from "../data/company_logo_name.svg";
+import { useNavigate } from "react-router-dom";
 
 
 
-const Home = () => {
+const Home = ({setIsLoggedin}) => {
+const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedin(false);
+    navigate("/auth/login");
+  };
 
   return (
     <>
       <div className="flex justify-center items-center px-5">
         <img className="my-3" src={one} style={{ width: "200px" }} />
       </div>
-      <Header />
+      <Header /> <button className="btn btn-primary" onClick={logout}>Logout</button>
       <div className="flex flex-row">
         <div className="mx-5 w-3/5">
           <Heading />

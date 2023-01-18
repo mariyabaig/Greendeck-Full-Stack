@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import one from "../data/company_logo_name.svg";
 import { useAlert } from 'react-alert'
 
-const Login = () => {
+const Login = ({setIsLoggedin}) => {
   const navigate = useNavigate();
 
   const alert = useAlert();
-  
+
   const goToRegister = () => {
     navigate("/auth/signup");
   };
 
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  // const [isLoggedin, setIsLoggedin] = useState(false);
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
@@ -49,6 +49,9 @@ const Login = () => {
     localStorage.removeItem('token');
     setIsLoggedin(false);
     navigate("/auth/login")
+    alert.show("Successfully logged out")
+
+
   };
 
 
@@ -65,7 +68,7 @@ const Login = () => {
         >
           <img className="my-3" src={one} style={{ width: "200px" }} />
         </div>
-        {!isLoggedin ? (<>
+       
         <div className="p-8 lg:w-1/2 mx-auto">
           <div>
          
@@ -142,11 +145,8 @@ const Login = () => {
         </div>
         <div />
         <div /> 
-        </>
-        ) : (
-         <h1><button onClickCapture={logout}>Logout</button></h1> 
-        )
-        }
+       
+
     </>
   );
 };

@@ -20,13 +20,14 @@ const [isLoggedin, setIsLoggedin] = useState(false);
             exact
             path="/organizations/quantive"
             
-            element={<Home/>}
+            element= {isLoggedin ? <Home setIsLoggedin={setIsLoggedin}/> : <Login setIsLoggedin={setIsLoggedin}/> }
+           
             errorElement={<RouteError />}
             />
             
          
-           <Route exact path="/" Redirect to = "/auth/login" element={<Login/>} ></Route> 
-          <Route exact path="/auth/login" element={<Login/>} />
+           <Route exact path="/" Redirect to = "/auth/login" element={<Login setIsLoggedin={setIsLoggedin}/>} ></Route> 
+          <Route exact path="/auth/login" element={<Login setIsLoggedin={setIsLoggedin}/>} />
           <Route exact path="/auth/signup" element={<Register />} />
         </Routes>
       </BrowserRouter>   
