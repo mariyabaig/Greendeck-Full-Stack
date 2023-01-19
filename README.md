@@ -5,7 +5,7 @@ Clone or download
 
 ```$ git clone https://github.com/mariyabaig/Greendeck-Full-Stack.git```
 
-After you have cloned this repo and install the yarn, install the dependencies with:
+After you have cloned this repo install the dependencies with:
 ---------------
 ```$npm i or npm install```
 
