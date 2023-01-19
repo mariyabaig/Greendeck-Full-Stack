@@ -43,9 +43,9 @@ const[isLoggedin,setIsLoggedin] =[false]
       
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({name, email,password})
+        body: JSON.stringify({name, email, password})
     });
     const json = await response.json()
     //console.log(json);
@@ -53,13 +53,11 @@ const[isLoggedin,setIsLoggedin] =[false]
         // Save the auth token and redirect
         localStorage.setItem('token', json.authToken); 
         navigate("/organizations/quantive");
-        alert.show("Successfully created your account, You're now on home")
+        alert.show("Successfully created your account, You can now login")
   
     }
     { if (json.error ==="Sorry a user with this email already exists") {
       alert.show("User with this email already exists")
-    }  else{
-      alert.show("Something bad happened. Couldn't Register")
     }
       
     }
